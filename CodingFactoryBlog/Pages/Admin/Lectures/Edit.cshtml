@@ -15,7 +15,15 @@
 
 </div>
 
-@(Model.SelectedLecture !=null) {
+
+
+
+<partial name ="_Notification" />
+
+
+
+
+@if(Model.SelectedLecture !=null) {
 
 <div>
     <div class="container mb-5 border-3 border-success">
@@ -94,3 +102,5 @@
         <p> Lecture Not Found :/ </p>
     </div>
 }
+
+

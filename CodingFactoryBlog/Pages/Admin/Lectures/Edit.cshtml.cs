@@ -28,11 +28,18 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
 
         public async Task<IActionResult> OnPostUpdate()
         {
-          
+
             await lectureRepository.UpdateAsync(SelectedLecture);
 
-            return RedirectToPage("/Admin/Lectures/ListLectures");
+            ViewData["Notification"] = new Models.ViewModels.Notification
+            {
+                Message = "Lecture Updated !!!",
+                Type = Enums.NotificationType.Success,
+            };
 
+
+
+            return Page();
         }
 
         

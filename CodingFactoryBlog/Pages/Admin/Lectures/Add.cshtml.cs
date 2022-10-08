@@ -4,6 +4,7 @@ using CodingFactoryBlog.Models.ViewModels;
 using CodingFactoryBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace CodingFactoryBlog.Pages.Admin.Lectures
 {
@@ -45,6 +46,17 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
             // async to DbContext;
 
             await lectureRepository.AddAsync(lecture);
+
+            
+            var notification = new Notification
+            {
+                Type = Enums.NotificationType.Success,
+                Message = "New lecture saved!"
+            };
+
+            TempData["Notification"]=JsonSerializer.Serialize(notification);
+
+
 
             // go to list all 
 
