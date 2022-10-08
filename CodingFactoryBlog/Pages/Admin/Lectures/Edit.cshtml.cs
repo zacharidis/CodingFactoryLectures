@@ -1,24 +1,26 @@
 using CodingFactoryBlog.DATA;
 using CodingFactoryBlog.Models.Domain;
+using CodingFactoryBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Runtime.InteropServices;
 
 namespace CodingFactoryBlog.Pages.Admin.Lectures
 {
     public class EditModel : PageModel
     {
-        private readonly CodingFactoryBlogDbContext codingFactoryBlogDbContext;
+        private readonly ILectureRepository lectureRepository;
 
         [BindProperty]
         public  Lecture SelectedLecture { get; set; }
-        public EditModel(CodingFactoryBlogDbContext codingFactoryBlogDbContext)
+        public EditModel(ILectureRepository lectureRepository)
         {
-            this.codingFactoryBlogDbContext = codingFactoryBlogDbContext;
+            this.lectureRepository = lectureRepository;
         }
         public async Task  OnGet(Guid id)
         {
 
-           SelectedLecture =  await codingFactoryBlogDbContext.Lectures.FindAsync(id);
+           SelectedLecture =  await lectureRepository.GetAsync(id);
             
           
         }
@@ -26,25 +28,8 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
 
         public async Task<IActionResult> OnPostUpdate()
         {
-            var ExistingLecture = await codingFactoryBlogDbContext.Lectures.FindAsync(SelectedLecture.Id);
-
-            if (ExistingLecture != null)
-            {
-                ExistingLecture.Header = SelectedLecture.Header;
-                ExistingLecture.PageTitle = SelectedLecture.PageTitle;
-                ExistingLecture.Content = SelectedLecture.Content;
-                ExistingLecture.ShortDescription = SelectedLecture.ShortDescription;
-                ExistingLecture.ImageUrl = SelectedLecture.ImageUrl;
-                ExistingLecture.UniqueUrl = SelectedLecture.UniqueUrl;
-                ExistingLecture.PublishedDate = SelectedLecture.PublishedDate;
-                ExistingLecture.Author = SelectedLecture.Author;
-                ExistingLecture.Visible = SelectedLecture.Visible;
-
-
-            }
-
-            await codingFactoryBlogDbContext.SaveChangesAsync();
-            // save changes
+          
+            await lectureRepository.UpdateAsync(SelectedLecture);
 
             return RedirectToPage("/Admin/Lectures/ListLectures");
 
@@ -53,18 +38,19 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
         
         public async Task<IActionResult> OnPostDelete()
         {
-            var ExistingLecture = await codingFactoryBlogDbContext.Lectures.FindAsync(SelectedLecture.Id);
 
-            if (ExistingLecture != null )
+          var deleted =  await lectureRepository.DeleteAsync(SelectedLecture.Id);
+
+            if(deleted)
             {
-
-                codingFactoryBlogDbContext.Lectures.Remove(ExistingLecture);
-             await   codingFactoryBlogDbContext.SaveChangesAsync();
-
                 return RedirectToPage("/Admin/Lectures/ListLectures");
             }
 
             return Page();
+
+
+
+
         }
     }
 }

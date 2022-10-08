@@ -1,4 +1,5 @@
 using CodingFactoryBlog.DATA;
+using CodingFactoryBlog.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Services.AddDbContext<CodingFactoryBlogDbContext>(options =>
 options.UseSqlServer(
     builder.Configuration.GetConnectionString("CFDbConnectionString")));
 
-
+builder.Services.AddScoped<ILectureRepository , LectureRepository>();
 
 
 

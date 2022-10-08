@@ -1,6 +1,7 @@
 using CodingFactoryBlog.DATA;
 using CodingFactoryBlog.Models.Domain;
 using CodingFactoryBlog.Models.ViewModels;
+using CodingFactoryBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,14 +9,15 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
 {
     public class AddModel : PageModel
     {
-        private readonly CodingFactoryBlogDbContext codingFactoryBlogDbContext;
+        private readonly ILectureRepository lectureRepository;
 
         [BindProperty]
         public AddLecture AddLectureRequest { get; set; }
 
-        public AddModel(CodingFactoryBlogDbContext codingFactoryBlogDbContext)
+        public AddModel(ILectureRepository  lectureRepository)
         {
-            this.codingFactoryBlogDbContext = codingFactoryBlogDbContext;
+           
+            this.lectureRepository = lectureRepository;
         }
 
 
@@ -42,8 +44,7 @@ namespace CodingFactoryBlog.Pages.Admin.Lectures
             };
             // async to DbContext;
 
-           await codingFactoryBlogDbContext.Lectures.AddAsync(lecture);
-           await codingFactoryBlogDbContext.SaveChangesAsync();
+            await lectureRepository.AddAsync(lecture);
 
             // go to list all 
 
