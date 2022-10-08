@@ -1,0 +1,37 @@
+﻿namespace CodingFactoryBlog.Models.Domain
+{
+    /// <summary>
+    /// 
+    ///  Class Lecture code 
+    ///  written by Georgios Zacharidis 
+    ///  as a part of the final CF project
+    /// 
+    /// </summary>
+    public class Lecture
+    {
+        
+        // primary key Guid 
+        public Guid Id { get; set; }
+
+        
+        public string Header { get; set; }
+        public string PageTitle { get; set; }
+        public string Content { get; set; } 
+
+        public string ShortDescription { get; set; }    
+        
+        public string ImageUrl { get; set; }
+
+        public string UniqueUrl { get; set; }
+
+        public  DateTime PublishedDate { get; set; }
+
+        public string Author { get; set; }
+
+        public bool Visible { get; set; }
+
+
+
+
+    }
+}

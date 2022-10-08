@@ -1,0 +1,87 @@
+﻿@page
+@model CodingFactoryBlog.Pages.Admin.Lectures.AddModel
+@{
+}
+
+<div class="bg-warning bg-opacity-10 p-4">
+
+    <div class="container">
+
+        <h1> Add A Lecture </h1>
+        <br />
+        <h4>* indicates a required field </h4>
+
+    </div>
+
+
+</div>
+
+
+<div>
+    <div class="container mb-5 border-3 border-success">
+
+        <form method="post">
+            <div class="mb-5">
+                <label for="forHeader">Header *</label>
+                <input type="text" class="form-control" id="forHeader"  placeholder="Enter a Lecture Header" required asp-for="AddLectureRequest.Header">
+
+            </div>
+
+            <div class="mb-5">
+                <label for="forPageTitle">Page Title *</label>
+                <input type="text" class="form-control" id="forPageTitle" placeholder="Enter a Page Title"required asp-for="AddLectureRequest.PageTitle">
+            </div>
+
+             <div class="mb-5">
+                <label for="forContent">Content(HTML) *</label>
+                <textarea class="form-control" id="forContent"  placeholder="Enter the Lecture Content" maxlength="3000" required asp-for="AddLectureRequest.Content"> </textarea>
+            </div>
+
+            <div class="mb-5">
+                <label for="forShortDescription">Short Description *</label>
+                <input type="text" class="form-control" id="forShortDescription" placeholder="Enter a Short Description" maxlength="50" required asp-for="AddLectureRequest.ShortDescription">
+            </div>
+
+            <div class="mb-5">
+                <label for="forImageUrl">Image</label>
+                <input type="text" class="form-control" id="forImageUrl" placeholder="Enter a remote image URL" asp-for="AddLectureRequest.ImageUrl">
+            </div>
+
+             <div class="mb-5">
+                <label for="forUniqueUrl">Lecture Url *</label>
+                <input type="text" class="form-control" id="forUniqueUrl" placeholder="Enter the URL your Lecture will have" required asp-for="AddLectureRequest.UniqueUrl">
+            </div>
+
+             <div class="mb-5">
+                <label for="forPublishedDate">Published Date *</label>
+                <input type="date" class="form-control" id="forPublishedDate" required asp-for="AddLectureRequest.PublishedDate">
+            </div>
+
+             <div class="mb-5">
+                <label for="forAuthor">Author *</label>
+                <input type="text" class="form-control" id="forAuthor" placeholder="Enter the Lecture Author" required asp-for="AddLectureRequest.Author">
+                 
+            </div>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="isVisible" asp-for="AddLectureRequest.Visible">
+                <label class="form-check-label" for="isVisible">
+                    Make the Lecture Visible ?
+                </label>
+            </div>
+           
+
+
+          
+            <button type="submit" class="btn btn-warning">Submit</button>
+            <button type="reset" class="btn btn-danger"> Reset values </button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+  

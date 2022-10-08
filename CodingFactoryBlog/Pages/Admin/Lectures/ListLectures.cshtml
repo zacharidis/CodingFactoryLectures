@@ -1,0 +1,63 @@
+﻿@page
+@model CodingFactoryBlog.Pages.Admin.Lectures.ListLecturesModel
+@{
+}
+
+
+<div class="bg-warning bg-opacity-10 p-4">
+
+    <div class="container">
+
+        <h1> All Lectures </h1>
+
+    </div>
+
+
+</div>
+
+@if(Model.Lectures != null && Model.Lectures.Any()) {
+
+    <div class="container">
+
+        <table class="table text-warning">
+
+            <thead>
+                <tr>
+                    <td>Author</td>
+                    <td>Header</td>
+                    <td>Short Description</td>
+                    <td></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var lecture in Model.Lectures)
+                {
+
+                    <tr>
+                        <td>@lecture.Author</td>
+                        <td>@lecture.Header</td>
+                        <td>@lecture.ShortDescription</td>
+                        <td><a href="/Admin/Lectures/Edit/@lecture.Id">View Lecture</a></td>
+                    </tr>
+
+
+
+                }
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+} else {
+
+    <div class="container-fluid">
+
+        <p>No Lectures Found !!!!</p>
+
+    </div>
+}
+
