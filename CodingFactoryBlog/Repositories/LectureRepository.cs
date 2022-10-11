@@ -53,6 +53,11 @@ namespace CodingFactoryBlog.Repositories
 
         }
 
+        public async Task<Lecture> GetAsync(string url)
+        {
+            return await codingFactoryBlogDbContext.Lectures.FirstOrDefaultAsync(x => x.UniqueUrl == url);
+        }
+
         public async Task<Lecture> UpdateAsync(Lecture lecture)
         {
             var ExistingLecture = await codingFactoryBlogDbContext.Lectures.FindAsync(lecture.Id);

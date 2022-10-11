@@ -1,0 +1,44 @@
+﻿@page "/lectures/{UniqueUrl}"
+@model CodingFactoryBlog.Pages.Admin.Lectures.CurrentLectureModel
+@{
+    //title get
+    ViewData["Title"] = Model.lecture.PageTitle; 
+
+}
+
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            @if(Model.lecture != null) {
+
+                <h1 class="mb-3"> @Model.lecture.Header </h1>
+                <div class="d-flex justify-content-between">
+                    <span>
+                        @Model.lecture.Author
+                    </span>
+                    <span>
+                        @Model.lecture.PublishedDate
+                    </span>
+                </div>
+                
+                <hr />
+
+                <div class="mb-3">
+                @Html.Raw(Model.lecture.Content)     
+                </div>
+
+            } 
+            else {
+                <h1> Lecture not found </h1>
+            }
+
+
+
+        </div>
+        
+
+    </div>
+
+
+</div>

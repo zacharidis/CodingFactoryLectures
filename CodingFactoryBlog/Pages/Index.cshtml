@@ -4,7 +4,74 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hello and Welcome to CF Lectures Blog</h1>
-    <p> This ASP Core CRUD app is made as the final project by Georgios Zacharidis</p>
+<div class="container col-xxl-8 px-4 py-5">
+
+
+    <div class="row align-items-center g-5 py-5">
+
+        
+        <div class="col-12 col-lg-6">
+
+             <h1 class="display-5 fw-bold lh-1 mb-3">
+                    Coding Factory Lectures 
+             </h1>
+             <p class="lead"> A simple blog-like implementation with ASP CORE and C#  </p>
+             <p class="lead"> By Georgios Zacharidis </p>
+
+        </div>
+        
+          <div class="col-12 col-lg-6">
+            <img src="https://images.pexels.com/photos/2330137/pexels-photo-2330137.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            class="d-block mx-auto img-fluid"  width="500px"/>
+          </div>
+
+
+
+    </div>
+
+
+
+
 </div>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+
+
+            @if (Model.Lectures != null && Model.Lectures.Any())
+            {
+
+                @foreach (var lecture in Model.Lectures)
+                {
+
+                    <div class="mb-5 bg-danger box-shadow">
+                        <h3> Author : @lecture.Author </h3> 
+                        <br/>
+                        <h3> Summary: @lecture.Header </h3>
+                        <br/>
+                        <h4> Date: @lecture.PublishedDate</h4> 
+                                 
+                        <div class="px-4 py-4">@lecture.ShortDescription</div>
+                        <a href="/lectures/@lecture.UniqueUrl" class="btn btn-warning" role="button">Read Lecture</a>
+                    </div>
+
+                }
+
+            }
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
